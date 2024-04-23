@@ -94,7 +94,7 @@ def before_request():
 # Run the app with encrypted database connection
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run(debug=False)
 
 # Additional security and functionality enhancements
 # ... (include any additional code for new features and functionalities)
