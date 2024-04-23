@@ -84,4 +84,4 @@ api.add_resource(EnergyManagementEndpoint, '/api/energy/manage')
 # such as epoch-based checkpoint creation, comparative playground UI, improved file search, and vector storage objects.
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)
