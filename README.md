@@ -25,19 +25,29 @@ Welcome to the Creo-eVTOL project repository! This project is dedicated to advan
 5. **Continuous Improvement**: Adapt the software to industry trends and regulatory requirements.
 
 ## Getting Started
-To get started with the Creo-eVTOL project:
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install the required dependencies.
+To get started with the Creo-eVTOL project, follow these steps:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/CreoDAMO/Creo-eVTOL.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Creo-eVTOL
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 4. Follow the setup instructions in the documentation.
 
 ## Contribution
-We welcome contributions from the community. Please read our CONTRIBUTING.md file for guidelines on how to make contributions.
+We welcome contributions from the community. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to make contributions.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
+We would like to thank the following organizations for their support and collaboration:
 - NASA
 - Airbus
 - Rolls-Royce
@@ -46,4 +56,3 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 - And all our other partners and contributors
 
 Thank you for visiting our repository, and we look forward to your contributions and support in making urban air mobility a reality!
-
