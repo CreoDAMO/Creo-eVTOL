@@ -51,11 +51,12 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 We would like to thank the following organizations for their support and collaboration:
 - NASA
 - Airbus
-- Rolls-Royce![Screenshot_20240420-155023~2](https://github.com/CreoDAMO/Creo-eVTOL/assets/151800081/e5da01aa-3fb8-4b97-a0b2-393a8209f34f)
-![Screenshot_20240420-154811~2](https://github.com/CreoDAMO/Creo-eVTOL/assets/151800081/f6b15b17-d630-43a3-bafe-816afc4fd474)
-
+- Rolls-Royce!
 - Urban-Air Port
 - Volocopter
 - And all our other partners and contributors
 
 Thank you for visiting our repository, and we look forward to your contributions and support in making urban air mobility a reality!
+
+[Screenshot_20240420-155023~2](https://github.com/CreoDAMO/Creo-eVTOL/assets/151800081/e5da01aa-3fb8-4b97-a0b2-393a8209f34f)
+![Screenshot_20240420-154811~2](https://github.com/CreoDAMO/Creo-eVTOL/assets/151800081/f6b15b17-d630-43a3-bafe-816afc4fd474)
