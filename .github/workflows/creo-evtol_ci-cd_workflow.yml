@@ -1,0 +1,48 @@
+name: Creo-eVTOL CI/CD Workflow
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'API-Manager/**'
+      - 'Dependencies/**'
+      - 'Source/**'
+      - 'UI-UX/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'API-Manager/**'
+      - 'Dependencies/**'
+      - 'Source/**'
+      - 'UI-UX/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: pip install -r Dependencies/requirements.txt
+      - name: Run tests
+        run: pytest Source/tests
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Azure DevOps Deployment
+        uses: Azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+            az webapp deploy --name <your-app-name> --resource-group <your-resource-group> --src-path '<path-to-your-artifact>'
+            # Add additional deployment steps as needed
+
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
