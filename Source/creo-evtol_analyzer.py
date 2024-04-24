@@ -2,14 +2,14 @@ import openai
 from datetime import datetime
 import json
 
-class AIPoweredAnalyzer:
-    def __init__(self, openai_api_key):
-        self.openai_api_key = openai_api_key
+# Set up OpenAI API access
+openai.api_key = 'your_openai_api_key'
+
+class CreoEVTOLAnalyzer:
+    def __init__(self):
+        pass
 
     def analyze_logs(self, log_data):
-        # Configure the OpenAI API client
-        openai.api_key = self.openai_api_key
-
         # Perform analysis using OpenAI (e.g., log analysis)
         prompt = (
             "Given the following eVTOL system logs, identify any anomalies, "
@@ -34,13 +34,22 @@ class AIPoweredAnalyzer:
         }
         return json.dumps(report, indent=2)
 
-# Example usage
+    # ... (other methods from CreoEVTOL class) ...
+
+    # Example usage of combined functionalities
+    def run_full_analysis(self):
+        log_data = "Sample log data from the Creo-eVTOL project"
+        ai_powered_analysis = self.analyze_logs(log_data)
+        audit_report = self.generate_audit_report(ai_powered_analysis)
+        print("AI-Powered Audit Report:", audit_report)
+
+        # Additional EVTOL-specific analysis and optimization
+        evtol_design_result = self.design_and_optimize_evtol("VTOL wing")
+        print("EVTOL Design Optimization Result:", evtol_design_result)
+        # ... (other example usages) ...
+
 if __name__ == "__main__":
-    # Replace 'your_openai_api_key' with your actual OpenAI API key
-    ai_analyzer = AIPoweredAnalyzer('your_openai_api_key')
-    log_data = "Sample log data from the Creo-eVTOL project"
-    ai_powered_analysis = ai_analyzer.analyze_logs(log_data)
+    creo_evtol_analyzer = CreoEVTOLAnalyzer()
+    creo_evtol_analyzer.run_full_analysis()
+    # ... (other example usages) ...
     
-    # Generate and print the audit report
-    audit_report = ai_analyzer.generate_audit_report(ai_powered_analysis)
-    print("AI-Powered Audit Report:", audit_report)
