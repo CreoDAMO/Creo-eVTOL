@@ -1,6 +1,3 @@
-[# Creo-eVTOL_ Advancing eVTOL Software for Future Urban Air Mobility (1).pdf](https://github.com/CreoDAMO/Creo-eVTOL/files/15099549/Creo-eVTOL_.Advancing.eVTOL.Software.for.Future.Urban.Air.Mobility.1.pdf)
-# Creo-eVTOL Project
-
 ## Introduction
 Welcome to the Creo-eVTOL project repository! This project is dedicated to advancing the software for electric vertical takeoff and landing (eVTOL) vehicles, focusing on safety, efficiency, and user experience. Our mission is to integrate cutting-edge technologies such as AI, AR/VR, quantum computation, and constructive theory to revolutionize urban air mobility.
 
