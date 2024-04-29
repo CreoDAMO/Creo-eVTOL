@@ -6,7 +6,7 @@ Flask-Limiter==1.4
 Flask-SQLAlchemy==2.5.1
 Flask-Marshmallow==0.14.0
 marshmallow==3.13.0
-Werkzeug==2.0.2
+Werkzeug==3.0.0
 PyJWT==2.1.0
 datetime==4.3
 SQLAlchemy-Utils==0.37.8
