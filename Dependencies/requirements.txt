@@ -11,7 +11,7 @@ PyJWT==2.1.0
 datetime==4.3
 SQLAlchemy-Utils==0.37.8
 qiskit==0.29.0
-cuda-quantum==0.1.0
+cuda-quantum==0.7.0  # Updated to the latest available version
 cuQuantum==24.03.0
 quantpy==0.2.1
 tensorflow==2.6.0
