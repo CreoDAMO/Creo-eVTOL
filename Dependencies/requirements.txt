@@ -9,8 +9,6 @@ marshmallow==3.13.0
 Werkzeug==2.0.2
 PyJWT==2.1.0
 datetime==4.3
-hashlib==20081119
-secrets==1.0.2
 SQLAlchemy-Utils==0.37.8
 qiskit==0.29.0
 cuda-quantum==0.1.0
