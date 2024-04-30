@@ -27,6 +27,8 @@ jobs:
           python-version: '3.8'
       - name: Install dependencies
         run: pip install -r Dependencies/requirements.txt
+      - name: Install pytest
+        run: pip install pytest
       - name: Run tests
         run: pytest Source/tests
 
