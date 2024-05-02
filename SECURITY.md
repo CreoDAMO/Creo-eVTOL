@@ -21,7 +21,7 @@ We appreciate your contributions to improving the security of Creo-eVTOL Blockch
 
 We follow a policy of responsible disclosure to address security vulnerabilities in Creo-eVTOL Blockchain. Here are some guidelines for responsible disclosure:
 
-1. **Report security vulnerabilities privately**: Please report security vulnerabilities directly to us via email at [security@creo-evtol.com](mailto:security@creo-evtol.com).
+1. **Report security vulnerabilities privately**: Please report security vulnerabilities directly to us via email at [jacquedegraff@creodamo.com](mailto:jacquedegraff@creodamo.com).
 
 2. **Provide necessary details**: When reporting a security vulnerability, please provide sufficient details to allow us to understand and reproduce the issue.
 
