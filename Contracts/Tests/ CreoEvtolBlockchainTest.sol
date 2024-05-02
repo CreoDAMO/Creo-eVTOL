@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "truffle/Assert.sol";
-import "truffle/DeployedAddresses.sol";
-import "../contracts/CreoEvtolBlockchain.sol";
+import "../CreoEvtolBlockchain.sol";
 
 contract CreoEvtolBlockchainTest {
     CreoEvtolBlockchain private creoEvtolBlockchain;
@@ -14,18 +12,19 @@ contract CreoEvtolBlockchainTest {
     
     function testLoggingTelemetry() public {
         // Call the function that logs telemetry data in CreoEvtolBlockchain contract
-        creoEvtolBlockchain.logTelemetryData("Telemetry data");
+        creoEvtolBlockchain.logTelemetryData("Telemetry Type", "2024-05-01", "Telemetry data");
         
         // Get the logged telemetry data
-        string memory loggedTelemetry = creoEvtolBlockchain.retrieveTelemetryData("Telemetry data");
+        string memory loggedTelemetry = creoEvtolBlockchain.retrieveTelemetryData("Telemetry Type");
         
         // Assert that the logged telemetry matches the expected data
-        Assert.equal(loggedTelemetry, "Telemetry data", "Telemetry logging failed");
+        assert(keccak256(abi.encodePacked(loggedTelemetry)) == keccak256(abi.encodePacked("Telemetry data")));
     }
     
     // Other test cases for core functions
     
-    function() external payable {
-        // Fallback function to receive Ether during testing if needed
+    receive() external payable {
+        // Handle the received Ether, such as emitting an event
+        // or reverting the transaction if receiving Ether is not expected
     }
 }
