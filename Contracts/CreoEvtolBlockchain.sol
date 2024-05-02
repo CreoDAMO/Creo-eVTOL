@@ -10,7 +10,6 @@ contract CreoEvtolBlockchain {
     // Struct to store telemetry data
     struct TelemetryData {
         address sender; // Address of the sender
-        string evtolId; // Unique identifier of the EVTOL vehicle
         string timestamp; // Timestamp of the telemetry data
         string data; // Telemetry data
     }
@@ -46,7 +45,7 @@ contract CreoEvtolBlockchain {
     address public owner;
 
     // Event emitted when telemetry data is logged
-    event TelemetryDataLogged(address indexed sender, string evtolId, string timestamp, string data);
+    event TelemetryDataLogged(address indexed sender, string timestamp, string data);
 
     // Event emitted when a maintenance check is performed
     event MaintenanceCheckPerformed(address indexed operator, string evtolId, uint256 timestamp);
@@ -101,30 +100,27 @@ contract CreoEvtolBlockchain {
 
     /**
      * @dev Logs telemetry data for an EVTOL vehicle
-     * @param evtolId The unique identifier of the EVTOL vehicle
      * @param timestamp The timestamp of the telemetry data
      * @param data The telemetry data
      */
-    function logTelemetryData(string memory evtolId, string memory timestamp, string memory data) external {
+    function logTelemetryData(string memory timestamp, string memory data) external {
         TelemetryData memory telemetry;
         telemetry.sender = msg.sender;
-        telemetry.evtolId = evtolId;
         telemetry.timestamp = timestamp;
         telemetry.data = data;
 
         // Store telemetry data
         evtolData[msg.sender][telemetry.timestamp] = telemetry.data;
 
-        emit TelemetryDataLogged(msg.sender, evtolId, timestamp, data);
+        emit TelemetryDataLogged(msg.sender, timestamp, data);
     }
 
     /**
      * @dev Retrieves telemetry data for an EVTOL vehicle
-     * @param evtolId The unique identifier of the EVTOL vehicle
      * @param timestamp The timestamp of the telemetry data to retrieve
      * @return The telemetry data
      */
-    function retrieveTelemetryData(string memory evtolId, string memory timestamp) external view returns (string memory) {
+    function retrieveTelemetryData(string memory /* evtolId */, string memory timestamp) external view returns (string memory) {
         return evtolData[msg.sender][timestamp];
     }
 
