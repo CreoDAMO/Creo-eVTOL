@@ -1,107 +1,37 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "./interfaces/IIdentity.sol";
-import "./interfaces/IPaymentChannels.sol";
-import "./interfaces/IOracle.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableMap.sol"; // Import EnumerableMap contract
 
-contract CreoEvtolBlockchain is ERC721, AccessControl, Ownable, Pausable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
+contract EVTolToken is ERC721 {
+    using EnumerableMap for EnumerableMap.UintToAddressMap; // Use EnumerableMap for UintToAddressMap
 
-    // Roles
-    bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
-    bytes32 public constant REGULATOR_ROLE = keccak256("REGULATOR_ROLE");
-    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
-
-    // Mapping from EVTOL ID to telemetry data hash
-    mapping(string => bytes32) private telemetryData;
-
-    // Mapping from EVTOL ID to maintenance history
-    mapping(string => string[]) private maintenanceHistory;
-
-    // Mapping from EVTOL ID to NFT token ID
-    mapping(string => uint256) private evtolToTokenId;
-
-    // Interfaces for external contracts and systems
-    IIdentity public identityContract;
-    IPaymentChannels public paymentChannelsContract;
-    IOracle public oracleContract;
-
-    constructor(
-        address _identityContractAddress,
-        address _paymentChannelsContractAddress,
-        address _oracleContractAddress
-    ) ERC721("CreoEvtol", "EVTOL") {
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        identityContract = IIdentity(_identityContractAddress);
-        paymentChannelsContract = IPaymentChannels(_paymentChannelsContractAddress);
-        oracleContract = IOracle(_oracleContractAddress);
+    // Struct to store eVTOL metadata
+    struct EVTOLOwner {
+        string identifier; // Unique identifier of the eVTOL
+        string inspectionHistory; // Inspection history of the eVTOL
+        // Add additional metadata as needed
     }
+    
+    // Mapping to store eVTOL metadata
+    mapping(uint256 => EVTOLOwner) private _eVTOLData;
+    EnumerableMap.UintToAddressMap private _tokenOwners; // Track token ownership
+    
+    // Constructor to initialize the ERC721 contract with name "eVTOL" and symbol "EVTOL"
+    constructor() ERC721("eVTOL", "EVTOL") {}
 
-    function pause() public onlyRole(ADMIN_ROLE) {
-        _pause();
+    // Function to mint a new eVTOL NFT
+    function mintEVTOLOwner(address to, uint256 tokenId, string memory identifier, string memory inspectionHistory) external {
+        _mint(to, tokenId); // Mint a new token with the specified tokenId and assign it to the specified address
+        _eVTOLData[tokenId] = EVTOLOwner(identifier, inspectionHistory); // Store metadata for the minted eVTOL token
     }
-
-    function unpause() public onlyRole(ADMIN_ROLE) {
-        _unpause();
+    
+    // Function to get eVTOL metadata
+    function getEVTOLOwnerMetadata(uint256 tokenId) external view returns (string memory identifier, string memory inspectionHistory) {
+        require(_tokenOwners.contains(tokenId), "Token ID does not exist"); // Ensure that the token exists
+        return (_eVTOLData[tokenId].identifier, _eVTOLData[tokenId].inspectionHistory); // Return metadata for the specified eVTOL token
     }
-
-    function logTelemetryData(string memory evtolId, bytes32 dataHash) public whenNotPaused onlyRole(OPERATOR_ROLE) {
-        telemetryData[evtolId] = dataHash;
-    }
-
-    function performMaintenance(string memory evtolId, string memory record) public whenNotPaused onlyRole(OPERATOR_ROLE) {
-        maintenanceHistory[evtolId].push(record);
-    }
-
-    function mintEvtolNFT(string memory evtolId) public whenNotPaused onlyRole(OPERATOR_ROLE) {
-        _tokenIdCounter.increment();
-        uint256 tokenId = _tokenIdCounter.current();
-        evtolToTokenId[evtolId] = tokenId;
-        _mint(msg.sender, tokenId);
-    }
-
-    function verifyFlightPath(string memory evtolId, string memory flightData) public whenNotPaused onlyRole(REGULATOR_ROLE) {
-        // Add flight path verification logic
-        require(oracleContract.verifyFlightData(flightData), "Flight data verification failed");
-    }
-
-    function openPaymentChannel(address recipient, uint256 amount) public whenNotPaused onlyRole(OPERATOR_ROLE) {
-        paymentChannelsContract.openChannel(msg.sender, recipient, amount);
-    }
-
-    function closePaymentChannel(address recipient) public whenNotPaused onlyRole(OPERATOR_ROLE) {
-        paymentChannelsContract.closeChannel(msg.sender, recipient);
-    }
-
-    function getTelemetryData(string memory evtolId) public view returns (bytes32) {
-        return telemetryData[evtolId];
-    }
-
-    function getMaintenanceHistory(string memory evtolId) public view returns (string[] memory) {
-        return maintenanceHistory[evtolId];
-    }
-
-    function getTokenIdForEvtol(string memory evtolId) public view returns (uint256) {
-        return evtolToTokenId[evtolId];
-    }
-
-    // Role management functions
-    function grantRole(bytes32 role, address account) public onlyRole(ADMIN_ROLE) {
-        grantRole(role, account);
-    }
-
-    function revokeRole(bytes32 role, address account) public onlyRole(ADMIN_ROLE) {
-        revokeRole(role, account);
-    }
-
-    function renounceRole(bytes32 role, address account) public {
-        renounceRole(role, account);
-    }
+    
+    // Other functions for your ERC-721 contract...
 }
