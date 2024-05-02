@@ -13,11 +13,11 @@ contract CreoEvtolBlockchainTest {
     }
     
     function testLoggingTelemetry() public {
-        // Call the function that logs telemetry in CreoEvtolBlockchain contract
-        creoEvtolBlockchain.logTelemetry("Telemetry data");
+        // Call the function that logs telemetry data in CreoEvtolBlockchain contract
+        creoEvtolBlockchain.logTelemetryData("Telemetry data");
         
         // Get the logged telemetry data
-        string memory loggedTelemetry = creoEvtolBlockchain.getLoggedTelemetry();
+        string memory loggedTelemetry = creoEvtolBlockchain.retrieveTelemetryData("Telemetry data");
         
         // Assert that the logged telemetry matches the expected data
         Assert.equal(loggedTelemetry, "Telemetry data", "Telemetry logging failed");
