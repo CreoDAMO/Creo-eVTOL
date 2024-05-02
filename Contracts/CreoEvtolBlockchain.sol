@@ -137,74 +137,59 @@ contract CreoEvtolBlockchain {
         dataHashes[hash] = data;
     }
 
-   /**
- * @dev Performs a maintenance check on an EVTOL vehicle
- * @param evtolId The unique identifier of the EVTOL vehicle
- * @param timestamp The timestamp of the maintenance check
- */
-function performMaintenanceCheck(string memory evtolId, uint256 timestamp) external onlyRegulator {
-    MaintenanceCheck memory maintenanceCheck;
-    maintenanceCheck.operator = msg.sender;
-    maintenanceCheck.evtolId = evtolId;
-    maintenanceCheck.timestamp = timestamp;
+    /**
+     * @dev Retrieves data from IPFS
+     * @param hash The hash of the data to retrieve
+     * @return The data
+     */
+    function retrieveDataFromIPFS(bytes32 hash) external view returns (string memory) {
+        return dataHashes[hash];
+    }
 
-    emit MaintenanceCheckPerformed(msg.sender, evtolId, timestamp);
-}
+    /**
+     * @dev Performs a maintenance check on an EVTOL vehicle
+     * @param evtolId The unique identifier of the EVTOL vehicle
+     */
+    function performMaintenanceCheck(string memory evtolId) external onlyRegulator {
+        MaintenanceCheck memory maintenanceCheck;
+        maintenanceCheck.operator = msg.sender;
+        maintenanceCheck.evtolId = evtolId;
+        maintenanceCheck.timestamp = block.timestamp;
 
-/**
- * @dev Verifies the flight path of an EVTOL vehicle
- * @param evtolId The unique identifier of the EVTOL vehicle
- * @param flightData The flight data
- * @param timestamp The timestamp of the flight path verification
- */
-function verifyFlightPath(string memory evtolId, string memory flightData, uint256 timestamp) external onlyRegulator {
-    FlightPathVerification memory flightPathVerification;
-    flightPathVerification.verifier = msg.sender;
-    flightPathVerification.evtolId = evtolId;
-    flightPathVerification.flightData = flightData;
-    flightPathVerification.timestamp = timestamp;
+        emit MaintenanceCheckPerformed(msg.sender, evtolId, block.timestamp);
+    }
 
-    emit FlightPathVerified(msg.sender, evtolId, flightData, timestamp);
-}
+    /**
+     * @dev Verifies the flight path of an EVTOL vehicle
+     * @param evtolId The unique identifier of the EVTOL vehicle
+     * @param flightData The flight data to verify
+     */
+    function verifyFlightPath(string memory evtolId, string memory flightData) external onlyRegulator {
+        FlightPathVerification memory flightPathVerification;
+        flightPathVerification.verifier = msg.sender;
+        flightPathVerification.evtolId = evtolId;
+        flightPathVerification.flightData = flightData;
+        flightPathVerification.timestamp = block.timestamp;
 
-/**
- * @dev Stores a crash report for an EVTOL vehicle
- * @param reportHash The hash of the crash report
- * @param reportData The data of the crash report
- */
-function storeCrashReport(bytes32 reportHash, bytes memory reportData) external onlyRegulator {
-    crashReports[reportHash] = reportData;
+        emit FlightPathVerified(msg.sender, evtolId, flightData, block.timestamp);
+    }
 
-    emit CrashReportStored(reportHash, block.timestamp);
-}
+    /**
+     * @dev Stores a crash report for an EVTOL vehicle
+     * @param reportHash The hash of the crash report
+     * @param reportData The data of the crash report
+     */
+    function storeCrashReport(bytes32 reportHash, bytes calldata reportData) external onlyRegulator {
+        crashReports[reportHash] = reportData;
 
-/**
- * @dev Upgrades the contract to a new version
- * @param newContract The address of the new contract version
- */
-function upgradeContract(address newContract) external onlyOwner {
-    emit ContractUpgraded(newContract, block.timestamp);
-}
+        emit CrashReportStored(reportHash, block.timestamp);
+    }
 
-/**
- * @dev Retrieves the data stored on IPFS for a given hash
- * @param hash The hash of the data to retrieve
- * @return The data stored on IPFS
- */
-function retrieveDataFromIPFS(bytes32 hash) external view returns (string memory) {
-    return dataHashes[hash];
-}
-
-// Event emitted when a maintenance check is performed
-event MaintenanceCheckPerformed(address indexed operator, string evtolId, uint256 timestamp);
-
-// Function to perform a maintenance check on an EVTOL vehicle
-function performMaintenanceCheck(string memory evtolId) public {
-    // Perform the maintenance check logic here...
-        
-    // Emit the MaintenanceCheckPerformed event
-    emit MaintenanceCheckPerformed(msg.sender, evtolId, block.timestamp);
-}
-
-// Other contract functions...
+    /**
+     * @dev Upgrades the contract to a new version
+     * @param newContract The address of the new contract
+     */
+    function upgradeContract(address newContract) external onlyOwner {
+        emit ContractUpgraded(newContract, block.timestamp);
+    }
 }
