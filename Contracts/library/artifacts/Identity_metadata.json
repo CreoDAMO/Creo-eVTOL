@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/library/Identity.sol": "Identity"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/library/Identity.sol": {
+			"keccak256": "0xda03420c75a7a9f5a9292d50e7b08fc2e3e3ffb51eff7816f7891927ceb15973",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ae520eaa32327440885c52c78542e29f4dfc5cfc90c9e2cc9d70b6cbf07c6591",
+				"dweb:/ipfs/QmdUcSFZ441LN7HLxbZ9c1r22Ho6XMHZbE3nwwEs3DzbGm"
+			]
+		}
+	},
+	"version": 1
+}

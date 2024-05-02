@@ -1,0 +1,420 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newContract",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ContractUpgraded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "reportHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "CrashReportStored",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "verifier",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "evtolId",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "flightData",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "FlightPathVerified",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "evtolId",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "MaintenanceCheckPerformed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "timestamp",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "data",
+						"type": "string"
+					}
+				],
+				"name": "TelemetryDataLogged",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "authorizedRegulators",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "regulator",
+						"type": "address"
+					}
+				],
+				"name": "grantRegulatorAccess",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "timestamp",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "data",
+						"type": "string"
+					}
+				],
+				"name": "logTelemetryData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "evtolId",
+						"type": "string"
+					}
+				],
+				"name": "performMaintenanceCheck",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
+					}
+				],
+				"name": "retrieveDataFromIPFS",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "timestamp",
+						"type": "string"
+					}
+				],
+				"name": "retrieveTelemetryData",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "regulator",
+						"type": "address"
+					}
+				],
+				"name": "revokeRegulatorAccess",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "reportHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "reportData",
+						"type": "bytes"
+					}
+				],
+				"name": "storeCrashReport",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newContract",
+						"type": "address"
+					}
+				],
+				"name": "upgradeContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "evtolId",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "flightData",
+						"type": "string"
+					}
+				],
+				"name": "verifyFlightPath",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "A smart contract for managing telemetry data, maintenance checks, flight path verification, crash report storage, and contract upgrading for EVTOL (Electric Vertical Take-Off and Landing) vehicles.",
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Constructor function"
+				},
+				"grantRegulatorAccess(address)": {
+					"details": "Grants access to a regulator",
+					"params": {
+						"regulator": "The address of the regulator to grant access"
+					}
+				},
+				"logTelemetryData(string,string)": {
+					"details": "Logs telemetry data for an EVTOL vehicle",
+					"params": {
+						"data": "The telemetry data",
+						"timestamp": "The timestamp of the telemetry data"
+					}
+				},
+				"performMaintenanceCheck(string)": {
+					"details": "Performs a maintenance check on an EVTOL vehicle",
+					"params": {
+						"evtolId": "The unique identifier of the EVTOL vehicle"
+					}
+				},
+				"retrieveDataFromIPFS(bytes32)": {
+					"details": "Retrieves data from IPFS",
+					"params": {
+						"hash": "The hash of the data to retrieve"
+					},
+					"returns": {
+						"_0": "The data"
+					}
+				},
+				"retrieveTelemetryData(string,string)": {
+					"details": "Retrieves telemetry data for an EVTOL vehicle",
+					"params": {
+						"timestamp": "The timestamp of the telemetry data to retrieve"
+					},
+					"returns": {
+						"_0": "The telemetry data"
+					}
+				},
+				"revokeRegulatorAccess(address)": {
+					"details": "Revokes access from a regulator",
+					"params": {
+						"regulator": "The address of the regulator to revoke access"
+					}
+				},
+				"storeCrashReport(bytes32,bytes)": {
+					"details": "Stores a crash report for an EVTOL vehicle",
+					"params": {
+						"reportData": "The data of the crash report",
+						"reportHash": "The hash of the crash report"
+					}
+				},
+				"upgradeContract(address)": {
+					"details": "Upgrades the contract to a new version",
+					"params": {
+						"newContract": "The address of the new contract"
+					}
+				},
+				"verifyFlightPath(string,string)": {
+					"details": "Verifies the flight path of an EVTOL vehicle",
+					"params": {
+						"evtolId": "The unique identifier of the EVTOL vehicle",
+						"flightData": "The flight data to verify"
+					}
+				}
+			},
+			"title": "CreoEvtolBlockchain",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/CreoEvtolBlockchain.sol": "CreoEvtolBlockchain"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/CreoEvtolBlockchain.sol": {
+			"keccak256": "0x7fde7c534be82f4598eb832f5bdc3355dba88703e3fd1c8f2d936a579787feeb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50a2143bd9f858f181d8afec3bffff0ea247c2394ccc782352544d0d5fd1596",
+				"dweb:/ipfs/QmeqagstAiSyvMLcBNm4ssHii7Y82Baa17Fp25u6TibKWR"
+			]
+		}
+	},
+	"version": 1
+}

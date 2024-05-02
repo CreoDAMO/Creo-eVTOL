@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/library/IPFSUttils.sol": "IPFSUtils"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/library/IPFSUttils.sol": {
+			"keccak256": "0xf76a559f8d5724857eaad70762a62ac47b6ded2189d9dd7f7259e5f7f100ebea",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df0bb3a679b51e0d7b7da57026e57a69676e2d8663963cf47de001ec5e9fc61c",
+				"dweb:/ipfs/QmYzkEzH4b2NB1wtPLLT6uLSySPWKevB7sJZ5LfEH8sMWS"
+			]
+		}
+	},
+	"version": 1
+}
